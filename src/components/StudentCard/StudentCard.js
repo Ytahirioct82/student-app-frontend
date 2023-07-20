@@ -1,3 +1,4 @@
+import "./StudentCard.css";
 const { student } = "../StudentList/StudentList.js";
 
 const StudentCard = ({ student }) => {
@@ -12,17 +13,21 @@ const StudentCard = ({ student }) => {
   const studentAverage = totalGrades / grades.length;
 
   return (
-    <div key={id}>
-      <img src={pic} alt={`${firstName} ${lastName}`} />
-      <h1>
-        {firstName} {lastName}
-      </h1>
-      <ul>
-        <li>Email: {email}</li>
-        <li>Company: {company}</li>
-        <li>Skill: {skill}</li>
-        <li>Average: {studentAverage}%</li>
-      </ul>
+    <div className="StudentCard" key={id}>
+      <div className="StudentCard__avatar">
+        <img src={pic} alt={`${firstName} ${lastName}`} />
+      </div>
+      <div className="StudentCard__info">
+        <h1>
+          {firstName} {lastName}
+        </h1>
+        <ul>
+          <li>Email: {email}</li>
+          <li>Company: {company}</li>
+          <li>Skill: {skill}</li>
+          <li>Average: {studentAverage}%</li>
+        </ul>
+      </div>
     </div>
   );
 };
