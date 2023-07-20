@@ -5,11 +5,12 @@ import StudentList from "./components/StudentList/StudentList";
 const API_URL = "http://localhost:8888";
 function App() {
   const [studentData, setStudentData] = useState([]);
-  console.log(`<App /> rendered!`);
+
   useEffect(() => {
     async function fetchData() {
       const res = await fetch(`${API_URL}/students`);
       const json = await res.json();
+
       setStudentData(json.data);
     }
     fetchData();
