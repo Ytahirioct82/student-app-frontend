@@ -1,13 +1,11 @@
 import { React } from "react";
-import { ImSpinner11 } from "react-icons/im";
 import { BoxLoading } from "react-loadingg";
-
+import "./Loading.css";
 const Loading = () => {
   return (
     <div className="Loading">
-      <h1>
-        <BoxLoading />
-      </h1>
+      <BoxLoading className="Loading" />
+      <h1>Loading...</h1>
     </div>
   );
 };
