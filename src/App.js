@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import StudentList from "./components/StudentList/StudentList";
 import Loading from "./components/Loading/Loading";
 import Error from "./components/Error/Error";
+import Container from "./components/Container/Container";
 
 const API_URL = "http://localhost:8888";
 function App() {
@@ -51,7 +52,7 @@ function App() {
   return (
     <div className="App">
       {/* if loading display Loading component else if error diplay error else display StudentList component */}
-      {render(loading, error)}
+      {<Container center={error || loading}>{render(loading, error)}</Container>}
     </div>
   );
 }
