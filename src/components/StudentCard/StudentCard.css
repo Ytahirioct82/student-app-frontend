@@ -1,22 +1,22 @@
 .StudentCard {
   display: grid;
-  grid-template-columns: 100px 1fr;
+  grid-template-columns: 100px 8fr 1fr;
   border-bottom: 1px solid #eee;
 }
 
-.StudentCard div {
+.StudentCard > div {
+  margin-top: 15px;
   margin-left: 10px;
 }
 
 .StudentCard__info h1 {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 0;
   text-transform: uppercase;
 }
 
 .StudentCard__avatar {
   display: grid;
-  place-items: center;
+  place-items: initial;
 }
 
 .StudentCard__avatar img {
@@ -30,4 +30,17 @@
   margin-top: 0px;
   list-style: none;
   color: #777;
+}
+.StudentCard__buttons button {
+  border: none;
+  background: none;
+  padding: 0;
+  font-size: 24px;
+  color: #aaa;
+  cursor: pointer;
+}
+
+.StudentCard__grades span {
+  display: inline-block;
+  min-width: 64px;
 }
