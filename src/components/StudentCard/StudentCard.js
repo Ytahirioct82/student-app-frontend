@@ -15,7 +15,7 @@ const StudentCard = ({ student }) => {
   const studentAverage = totalGrades / grades.length;
 
   // display grades when expanded state is truthy.
-  const testScores = expanded ? grades.map((test, i) => <li key={test - i}>{`Test ${i + 1} ${test}%`}</li>) : "";
+  const testGrades = expanded ? grades.map((grade, i) => <li key={grade - i}>{`Test ${i + 1} ${grade}%`}</li>) : "";
 
   return (
     <div className="StudentCard" key={id}>
@@ -34,7 +34,7 @@ const StudentCard = ({ student }) => {
           <li>Average: {studentAverage}%</li>
         </ul>
         <div className="StudentCard__grades">
-          <ul>{testScores}</ul>
+          <ul>{testGrades}</ul>
         </div>
       </div>
     </div>
