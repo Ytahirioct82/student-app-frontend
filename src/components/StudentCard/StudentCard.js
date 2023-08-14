@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./StudentCard.css";
-import { GrAdd, GrFormSubtract } from "react-icons/gr";
+import { FaPlus, FaMinus } from "react-icons/fa";
 
 const StudentCard = ({ student }) => {
   const [expanded, setExpanded] = useState(false);
@@ -15,7 +15,14 @@ const StudentCard = ({ student }) => {
   const studentAverage = totalGrades / grades.length;
 
   // display grades when expanded state is truthy.
-  const testGrades = expanded ? grades.map((grade, i) => <li key={grade - i}>{`Test ${i + 1} ${grade}%`}</li>) : "";
+  const testGrades = expanded
+    ? grades.map((grade, i) => (
+        <li key={grade - i}>
+          <span>Test {i + 1}</span>
+          <span>{grade}%</span>
+        </li>
+      ))
+    : "";
 
   return (
     <div className="StudentCard" key={id}>
@@ -23,7 +30,6 @@ const StudentCard = ({ student }) => {
         <img src={pic} alt={`${firstName} ${lastName}`} />
       </div>
       <div className="StudentCard__info">
-        <button onClick={() => setExpanded(!expanded)}>{expanded ? <GrFormSubtract /> : <GrAdd />}</button>
         <h1>
           {firstName} {lastName}
         </h1>
@@ -36,6 +42,9 @@ const StudentCard = ({ student }) => {
         <div className="StudentCard__grades">
           <ul>{testGrades}</ul>
         </div>
+      </div>
+      <div className="StudentCard__buttons">
+        <button onClick={() => setExpanded(!expanded)}>{expanded ? <FaMinus /> : <FaPlus />}</button>
       </div>
     </div>
   );
