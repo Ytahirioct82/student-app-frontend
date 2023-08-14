@@ -1,7 +1,9 @@
+import { useState } from "react";
 import "./StudentCard.css";
-const { student } = "../StudentList/StudentList.js";
+import { GrAdd, GrFormSubtract } from "react-icons/gr";
 
 const StudentCard = ({ student }) => {
+  const [expanded, setExpanded] = useState(false);
   const { id, firstName, lastName, company, email, pic, skill, grades } = student;
 
   //convert the grades to numbers and add them to get the total grades.
@@ -12,12 +14,16 @@ const StudentCard = ({ student }) => {
   //divide the total grades by the amount of grades to get the average.
   const studentAverage = totalGrades / grades.length;
 
+  // display grades when expanded state is truthy.
+  const testScores = expanded ? grades.map((test, i) => <li key={test - i}>{`Test ${i + 1} ${test}%`}</li>) : "";
+
   return (
     <div className="StudentCard" key={id}>
       <div className="StudentCard__avatar">
         <img src={pic} alt={`${firstName} ${lastName}`} />
       </div>
       <div className="StudentCard__info">
+        <button onClick={() => setExpanded(!expanded)}>{expanded ? <GrFormSubtract /> : <GrAdd />}</button>
         <h1>
           {firstName} {lastName}
         </h1>
@@ -27,6 +33,9 @@ const StudentCard = ({ student }) => {
           <li>Skill: {skill}</li>
           <li>Average: {studentAverage}%</li>
         </ul>
+        <div className="StudentCard__grades">
+          <ul>{testScores}</ul>
+        </div>
       </div>
     </div>
   );
