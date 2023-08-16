@@ -5,10 +5,20 @@ import "./StudentList.css";
 const StudentList = ({ studentData }) => {
   // when I type the input, I should see student by name
   const [searchInput, setSearchInput] = useState("");
+  const [expanded, setExpanded] = useState([]);
+
+  const handleExpandAll = () => setExpanded(dataToDisplay.map((student) => student.id));
+  const handleCollapseAll = () => setExpanded([]);
 
   // handles the user input and sets the value to the searchInput state.
   const handleChange = (event) => {
     setSearchInput(event.target.value);
+  };
+
+  const handleToggleExpanded = (id) => {
+    expanded.includes(id)
+      ? setExpanded(expanded.filter((studentId) => studentId !== id))
+      : setExpanded([...expanded, id]);
   };
 
   // bode of function - filter data here
@@ -34,7 +44,12 @@ const StudentList = ({ studentData }) => {
       return (
         <div className={contentClassName}>
           {dataToDisplay.map((student) => (
-            <StudentCard student={student} key={student.id} />
+            <StudentCard
+              key={student.id}
+              student={student}
+              expanded={expanded.includes(student.id)}
+              onClick={() => handleToggleExpanded(student.id)}
+            />
           ))}
           ;
         </div>
@@ -47,8 +62,10 @@ const StudentList = ({ studentData }) => {
 
   return (
     <div className="StudentList">
-      <div className="StudentList__input">
+      <div className="StudentList__Controls">
         <input value={searchInput} type="text" placeholder="Search By Name" onChange={handleChange} />
+        <button onClick={() => handleExpandAll()}>Expand All</button>
+        <button onClick={() => handleCollapseAll()}>Collapse All</button>
       </div>
       {renderContent()}
     </div>
