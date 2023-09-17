@@ -27,7 +27,7 @@ function App() {
         //show the user that we're loading...
         setLoading(true);
 
-        const res = await fetch(`${API_URL}/students`);
+        const res = await fetch(`${API_URL}/v2/students?include=grades`);
         const json = await res.json();
         const { data, error } = json;
 

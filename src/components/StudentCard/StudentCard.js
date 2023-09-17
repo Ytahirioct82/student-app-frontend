@@ -5,9 +5,8 @@ const StudentCard = ({ student, expanded, onClick }) => {
   const { id, firstName, lastName, company, email, pic, skill, grades } = student;
 
   //convert the grades to numbers and add them to get the total grades.
-  const totalGrades = grades.reduce((a, b) => {
-    return Number(a) + Number(b);
-  });
+  let totalGrades = 0;
+  grades.forEach((grade) => (totalGrades += Number(grade.score)));
 
   //divide the total grades by the amount of grades to get the average.
   const studentAverage = totalGrades / grades.length;
@@ -15,9 +14,9 @@ const StudentCard = ({ student, expanded, onClick }) => {
   // display grades when expanded state is truthy.
   const testGrades = expanded
     ? grades.map((grade, i) => (
-        <li key={`${grade} - ${i}`}>
+        <li key={`${grade.score} - ${i}`}>
           <span>Test {i + 1}</span>
-          <span>{grade}%</span>
+          <span>{grade.score}%</span>
         </li>
       ))
     : "";
@@ -35,7 +34,7 @@ const StudentCard = ({ student, expanded, onClick }) => {
           <li>Email: {email}</li>
           <li>Company: {company}</li>
           <li>Skill: {skill}</li>
-          <li>Average: {studentAverage}%</li>
+          <li>Average: {studentAverage.toFixed(2)}%</li>
         </ul>
         <div className="StudentCard__grades">
           <ul>{testGrades}</ul>
